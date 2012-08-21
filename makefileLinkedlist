@@ -1,0 +1,13 @@
+all: testLinkedList
+
+testLinkedList: testLinkedList.o LinkedList.o
+	g++ testLinkedList.o LinkedList.o -o testLinkedList
+
+testLinkedList.o: testLinkedList.cpp
+	g++ -c testLinkedList.cpp
+
+LinkedList.o: LinkedList.cpp
+	g++ -c LinkedList.cpp
+
+clean:
+	rm -rf *.o

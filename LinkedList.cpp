@@ -1,24 +1,71 @@
 #include "LinkedList.h"
 
 
-SingleLinkedNode::SingleLinkedNode(string data, SingleLinkedNode* nxtNode)
+Node::Node(std::string data, Node::Node* nxtNode)
   :
-  data(data_), nextNode(nxtNode)
+  data_(data), nextNode_(nxtNode)
 {}
 
-std::string getData(){
-  return self.data_;
+Node::Node(std::string data)
+  :
+  data_(data), nextNode_(NULL)
+{}
+
+std::string Node::getData(){
+  return this->data_;
 
 }
 
-bool setData(const string data){
-  self.data_ = data;
+bool Node::setData(std::string data){
+  this->data_ = data;
   return true;
 }
 
-SingleLinkedNode::SingleLinkedNode* getNextNode(){
-  return self.nextNode_;
+Node::Node* Node::getNextNode(){
+  return this->nextNode_;
 
 }
 
-bool setNextNode(const
+bool Node::setNextNode(Node* nxtNode){
+  this->nextNode_ = nxtNode;
+  return true;
+}
+
+int SingleLinkedList::insertNodeEnd(Node* insNode){
+  Node* curr = this.head;
+  while(curr){
+    curr = curr->getNextNode();
+  }
+  curr.setNextNode(insNode);
+  return 0;
+}
+
+int SingleLinkedList::insertNodeBeg(Node* insNode){
+  insNode->setNextNode(this->head);
+  this->head = insNode;
+  return 0;
+}
+
+int SingleLinkedList::searchNode(std::string data){
+  Node* curr = this->head;
+  while(curr){
+    if(!std::strcpm(curr->getData(),data)) return 0;
+
+  }
+  return 1;
+}
+
+int SingleLinkedList::deleteNode(std::string data){
+  Node* prv = this->head;
+  Node* curr;
+  while(prv){
+      curr = prv->getNextNode();
+      if(curr && std::strcmp(curr->getData(),data)){
+        prv.setNextNode(curr.getNextNode());
+        return 0;
+      }
+      prv = curr;
+  }
+  return 1;
+  
+}
