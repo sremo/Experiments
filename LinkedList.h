@@ -1,8 +1,9 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
+
 #include <string>
 
-class Node{
+class Node {
  public:
   std::string getData();
   bool setData(std::string data);
@@ -15,23 +16,28 @@ class Node{
   Node* nextNode_;
 };
 
-class SingleLinkedList{
+class SingleLinkedList {
  public:
   int insertNodeEnd(Node* insNode);
   int insertNodeBeg(Node* insNode);
   int deleteNode(std::string data);
   int searchNode(std::string data);
+  Node* returnListHead();
+  // HOW TO DO THIS? Address of temporary object?? use heap??  SingleLinkedList(std::string data);
+  SingleLinkedList();
+  SingleLinkedList(Node* headNode);
  private:
   Node* head;
 };
 
 class DoubleLinkedNode : Node {
+
+  //std::string getData();
+  //bool setData(std::string data);
+  //Node* getNextNode();
+  //bool setNextNode(DoubleLinkedNode* nxtNode);
+  //bool setPrevNode(DoubleLinkedNode* prvNode);
  public:
-  %std::string getData();
-  %bool setData(std::string data);
-  %Node* getNextNode();
-  %bool setNextNode(DoubleLinkedNode* nxtNode);
-  %bool setPrevNode(DoubleLinkedNode* prvNode);
   DoubleLinkedNode* getPrevNode();
   bool setPrevNode(DoubleLinkedNode* prvnode);
   DoubleLinkedNode(std::string data, DoubleLinkedNode* prvNode, DoubleLinkedNode* nxtNode);

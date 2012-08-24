@@ -32,11 +32,11 @@ bool Node::setNextNode(Node* nxtNode){
 }
 
 int SingleLinkedList::insertNodeEnd(Node* insNode){
-  Node* curr = this.head;
+  Node* curr = this->head;
   while(curr){
     curr = curr->getNextNode();
   }
-  curr.setNextNode(insNode);
+  curr->setNextNode(insNode);
   return 0;
 }
 
@@ -49,8 +49,9 @@ int SingleLinkedList::insertNodeBeg(Node* insNode){
 int SingleLinkedList::searchNode(std::string data){
   Node* curr = this->head;
   while(curr){
-    if(!std::strcpm(curr->getData(),data)) return 0;
-
+    if(!data.compare(curr->getData())) return 0; 
+    //    if(!(std::strcpm((curr->getData()).c_str(),data.c_str()))) return 0;
+    curr = curr->getNextNode();
   }
   return 1;
 }
@@ -60,8 +61,8 @@ int SingleLinkedList::deleteNode(std::string data){
   Node* curr;
   while(prv){
       curr = prv->getNextNode();
-      if(curr && std::strcmp(curr->getData(),data)){
-        prv.setNextNode(curr.getNextNode());
+      if(curr && !data.compare(curr->getData())){//std::strcmp((curr->getData()).c_str(),data.c_str())){
+        prv->setNextNode(curr->getNextNode());
         return 0;
       }
       prv = curr;
@@ -69,3 +70,20 @@ int SingleLinkedList::deleteNode(std::string data){
   return 1;
   
 }
+
+Node* SingleLinkedList::returnListHead(){
+  return this->head;
+}
+
+
+
+SingleLinkedList::SingleLinkedList()
+  : 
+  head(NULL)
+{}
+
+
+SingleLinkedList::SingleLinkedList(Node* headNode)
+    : 
+  head(headNode)
+  {}
